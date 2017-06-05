@@ -43,6 +43,7 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script>
         $('.form-signin').submit(function(e) {
+            $('.error-message').hide();
             e.preventDefault();
             if ($('.email-input').val() === '') {
                 $('.form-signin').addClass('has-error');
@@ -53,15 +54,19 @@
             }
 
             $.ajax({
-                url: 'stubs/login.json',
+                url: 'stubs/login-' + $('.email-input').val() + '-' + $('.password-input').val() + '.json',
                 method: 'POST',
                 data: {
                     email: $('.email-input').val(),
-                    password:$('.password-input').val()
+                    password: $('.password-input').val()
                 },
                 dataType: 'json'
             }).done(function() {
                 document.location.href = 'site.html';
+            }).fail(function() {
+                $('.form-signin').addClass('has-error');
+                $('.error-message').text('Неверные данные');
+                $('.error-message').show();
             });
         });
     </script>
