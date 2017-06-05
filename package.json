@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "chai": "^4.0.1",
+    "gemini": "^5.0.0-alpha.1",
     "hermione": "^0.36.0"
   },
   "devDependencies": {},
