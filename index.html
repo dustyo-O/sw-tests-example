@@ -26,8 +26,8 @@
 
       <form class="form-signin" role="form">
         <h2 class="form-signin-heading">Вход на сайт</h2>
-        <input type="email" class="form-control email-input" placeholder="Email address" autofocus>
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="text" class="form-control email-input" placeholder="Email address" autofocus>
+        <input type="password" class="form-control password-input" placeholder="Password">
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> Запомнить меня
         </label>
@@ -48,7 +48,21 @@
                 $('.form-signin').addClass('has-error');
                 $('.error-message').text('Нужно заполнить email');
                 $('.error-message').show();
+
+                return;
             }
+
+            $.ajax({
+                url: 'stubs/login.json',
+                method: 'POST',
+                data: {
+                    email: $('.email-input').val(),
+                    password:$('.password-input').val()
+                },
+                dataType: 'json'
+            }).done(function() {
+                document.location.href = 'site.html';
+            });
         });
     </script>
 
